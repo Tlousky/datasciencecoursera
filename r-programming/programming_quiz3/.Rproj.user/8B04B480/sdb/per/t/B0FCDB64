@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#outcome <- read.csv(\"outcome-of-care-measures.csv\", colClasses = \"character\")\n#outcome[, 11] <- as.numeric(outcome[, 11])\n#hist(outcome[, 11], xlab = names(outcome)[[11]] )\n\nsource(\"general.R\")\n\nbest <- function(state, outcomeName) {\n    ## Check that state and outcome are valid\n    states = levels(factor(outcome$State))\n    if ( !( state %in% states) ) {\n        stop(\"invalid state\")\n    }\n    \n    validOutcomes = c(\"heart attack\", \"heart failure\", \"pneumonia\" )\n    if ( !( outcomeName %in% validOutcomes) ) {\n        stop(\"invalid outcome\")\n    }\n    \n    nameStart = \"Hospital.30.Day.Death..Mortality..Rates.from.\"\n    fieldName = paste( c( nameStart, capitalize( outcomeName ) ), collapse = \"\" )\n\n    outcome[,fieldName] <- as.numeric( outcome[,fieldName] )\n    \n    ## Return hospital name in that state with lowest 30-day death\n    filtered <- outcome[ outcome$State == state & !is.na( outcome[[fieldName]] ), c(\"Hospital.Name\", fieldName, \"State\" )]\n    filtered <- filtered[ order( filtered[[fieldName]], filtered[[\"Hospital.Name\"]] ), ]\n\n    ## rate\n    return( filtered[ 1, \"Hospital.Name\" ] )\n}",
+    "created" : 1464639006928.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3533402476",
+    "id" : "B0FCDB64",
+    "lastKnownWriteTime" : 1464797719,
+    "last_content_update" : 1464797719818,
+    "path" : "~/GitHub/datasciencecoursera/r-programming/programming_quiz3/best.R",
+    "project_path" : "best.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

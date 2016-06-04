@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "myFunc <- function() {\n  x <- rnorm(100)\n  mean(x)\n}\n",
+    "created" : 1462394894595.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3944478454",
+    "id" : "6BCB3C63",
+    "lastKnownWriteTime" : 1462395459,
+    "last_content_update" : 1462395459659,
+    "path" : "~/GitHub/datasciencecoursera/sampleFunc.r",
+    "project_path" : "sampleFunc.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

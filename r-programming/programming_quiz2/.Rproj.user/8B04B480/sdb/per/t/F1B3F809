@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library( stringr )\n\nloadMonitorfile <- function( directory, id ) {\n    id <- str_pad(id, 3, pad = \"0\")                                          # Pad leading zeros \n    monitorData <- read.csv( paste( directory, \"/\", id, \".csv\", sep = '' ) ) # Load monitor data\n    return( monitorData )\n}\n\npollutantmean <- function( directory, pollutant, idVec = 1:332 ) {\n    allVals <- c()\n    for( id in idVec ) {\n        monitorData   <- loadMonitorfile( directory, id )\n        polludantData <- monitorData[,pollutant]                                 # Get all pollutant data\n        polludantData <- polludantData[ !is.na( polludantData ) ]                # Clean pollutant data\n        allVals <- append( allVals, polludantData )\n    }\n    \n    return ( mean( allVals ) )\n}",
+    "created" : 1463728164347.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3727815555",
+    "id" : "F1B3F809",
+    "lastKnownWriteTime" : 1463608423,
+    "last_content_update" : 1463608423,
+    "path" : "~/GitHub/datasciencecoursera/r-programming/programming_quiz2/pollutantmean.R",
+    "project_path" : "pollutantmean.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

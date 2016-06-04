@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library( stringr )\n\nloadMonitorfile <- function( directory, id ) {\n    id <- str_pad(id, 3, pad = \"0\")                                          # Pad leading zeros \n    monitorData <- read.csv( paste( directory, \"/\", id, \".csv\", sep = '' ) ) # Load monitor data\n    return( monitorData )\n}\n\ncomplete <- function( directory, idVec ) {\n    completeObs <- data.frame( id = character(), nobs = numeric(), stringsAsFactors = FALSE )\n    \n    for( id in idVec ) {\n        monitorData <- loadMonitorfile( directory, id )\n        sulfate     <- monitorData[,'sulfate']\n        nitrate     <- monitorData[,'nitrate']\n        both        <- !is.na( sulfate ) & !is.na( nitrate )\n        \n        nobs <- length( sulfate[ both ] )\n        completeObs[ nrow(completeObs) + 1, ] <- list( id = id, nobs = nobs )\n    }\n    \n    return ( completeObs )\n}",
+    "created" : 1463728162664.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3749645395",
+    "id" : "DE3B9B33",
+    "lastKnownWriteTime" : 1463605449,
+    "last_content_update" : 1463605449,
+    "path" : "~/GitHub/datasciencecoursera/r-programming/programming_quiz2/complete.R",
+    "project_path" : "complete.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "capitalize <- function(x) {\n    s <- strsplit(x, \" \")[[1]]\n    paste( \n        toupper( substring(s,1,1) ),\n        substring(s, 2),\n        sep      = \"\",\n        collapse = \".\"\n    )\n}\n\n## Read outcome data\noutcome <- read.csv(\"outcome-of-care-measures.csv\", colClasses = \"character\")",
+    "created" : 1464643158978.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3126850671",
+    "id" : "87F8658D",
+    "lastKnownWriteTime" : 1464643343,
+    "last_content_update" : 1464643343966,
+    "path" : "~/GitHub/datasciencecoursera/r-programming/programming_quiz3/general.R",
+    "project_path" : "general.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

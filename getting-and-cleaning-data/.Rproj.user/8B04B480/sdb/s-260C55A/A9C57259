@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "## Install  and load rhdf5 library\nsource( \"http://bioconductor.org/biocLite.R\" )\nbiocLite(\"rhdf5\")\n\nlibrary(rhdf5)\n\n## Create h5 file\ncreated = h5createFile(\"example.h5\")\nprint( created ) # Bool show operation result\n\n\n## Add groups and subgroups\ncreated = h5createGroup( \"example.h5\", \"g1\" )\ncreated = h5createGroup( \"example.h5\", \"g2\" )\ncreated = h5createGroup( \"example.h5\", \"g1/sg1\" )\n\nh5ls( \"example.h5\" )\n\n## Add matrices and nd-arrays to h5 file\nA = matrix( 1:10, nr = 5, nc = 2 )\nh5write( A, \"example.h5\", \"g1/A\" ) # Write matrix content to new subgroup A\n\nB = array( seq( 0.1, 2.0, by = 0.1 ), dim = c(5,2,2) )\nattr(B, \"scale\" ) = \"liter\"\n\nh5write( B, \"example.h5\", \"g1/sg1/B\" ) # Write array to new sub-subgroup\n\nh5ls( \"example.h5\" )\n\n## Add data frame as full dataset to h5 file\ndf = data.frame( \n    1L:5L, \n    seq(0,1, length.out = 5 ),\n    c( \"ab\", \"cde\", \"fghi\", \"a\", \"s\" ),\n    stringsAsFactors = FALSE\n)\n\nh5write( df, \"example.h5\", \"df\" )\nh5ls( \"example.h5\" )",
+    "created" : 1465049216913.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4175265420",
+    "id" : "A9C57259",
+    "lastKnownWriteTime" : 1465050233,
+    "last_content_update" : 1465050233768,
+    "path" : "~/GitHub/datasciencecoursera/getting-and-cleaning-data/hdf5.R",
+    "project_path" : "hdf5.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

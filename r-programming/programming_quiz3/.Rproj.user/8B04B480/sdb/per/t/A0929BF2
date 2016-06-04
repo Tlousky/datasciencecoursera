@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "source(\"general.R\")\n\nrankhospital <- function(state, outcomeName, rank) {\n    ## Check that state and outcome are valid\n    states = levels(factor(outcome$State))\n    if ( !( state %in% states) ) {\n        stop(\"invalid state\")\n    }\n\n    ## Check that state and outcome are valid    \n    validOutcomes = c(\"heart attack\", \"heart failure\", \"pneumonia\" )\n    if ( !( outcomeName %in% validOutcomes) ) {\n        stop(\"invalid outcome\")\n    }\n    \n    nameStart = \"Hospital.30.Day.Death..Mortality..Rates.from.\"\n    fieldName = paste( c( nameStart, capitalize( outcomeName ) ), collapse = \"\" )\n    \n    outcome[,fieldName] <- as.numeric( outcome[,fieldName] )\n\n    ## Return hospital name in that state with the given rank    \n    filtered <- outcome[ outcome$State == state & !is.na( outcome[[fieldName]] ), c(\"Hospital.Name\", fieldName, \"State\" )]\n    filtered <- filtered[ order( filtered[[fieldName]], filtered[[\"Hospital.Name\"]] ), ]\n\n    ## Convert \"best\" or \"worst\" to numbers\n    if ( rank == \"best\" ) rank <- 1\n    if ( rank == \"worst\") rank <- nrow( filtered )\n        \n    return( \n        filtered[ rank, \"Hospital.Name\" ]\n    )\n}",
+    "created" : 1464643125100.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "774995652",
+    "id" : "A0929BF2",
+    "lastKnownWriteTime" : 1464797625,
+    "last_content_update" : 1464797625587,
+    "path" : "~/GitHub/datasciencecoursera/r-programming/programming_quiz3/rankhospital.R",
+    "project_path" : "rankhospital.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

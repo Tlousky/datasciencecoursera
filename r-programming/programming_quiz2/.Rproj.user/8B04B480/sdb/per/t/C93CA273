@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library( stringr )\nsource( 'complete.R' )\n\nloadMonitorfile <- function( directory, id ) {\n    id <- str_pad(id, 3, pad = \"0\")                                          # Pad leading zeros \n    monitorData <- read.csv( paste( directory, \"/\", id, \".csv\", sep = '' ) ) # Load monitor data\n    return( monitorData )\n}\n\ncorr <- function( directory, threshold = 0 ) {\n    completeObs <- complete( directory, 1:332 )\n    filteredIDs <- completeObs[ completeObs['nobs'] > threshold, 'id' ]\n    \n    correlations = c()\n    for( id in filteredIDs ) {\n        monitorData <- loadMonitorfile( directory, id )\n        sulfate     <- monitorData[,'sulfate']\n        nitrate     <- monitorData[,'nitrate']\n        corVal      <- cor( sulfate, nitrate, use = \"pairwise.complete.obs\" )\n        \n        correlations <- c( correlations, corVal )\n    }\n    \n    return ( correlations )\n}",
+    "created" : 1463605452620.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4065211966",
+    "id" : "C93CA273",
+    "lastKnownWriteTime" : 1464029085,
+    "last_content_update" : 1464029085739,
+    "path" : "~/GitHub/datasciencecoursera/r-programming/programming_quiz2/corr.R",
+    "project_path" : "corr.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}

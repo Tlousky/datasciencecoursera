@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library( stringr )\n\nloadMonitorfile <- function( directory, id ) {\n    id <- str_pad(id, 3, pad = \"0\")                                          # Pad leading zeros \n    monitorData <- read.csv( paste( directory, \"/\", id, \".csv\", sep = '' ) ) # Load monitor data\n    return( monitorData )\n}\n\npollutantmean <- function( directory, pollutant, idVec = 1:332 ) {\n    allVals <- c()\n    for( id in idVec ) {\n        monitorData   <- loadMonitorfile( directory, id )\n        polludantData <- monitorData[,pollutant]                                 # Get all pollutant data\n        polludantData <- polludantData[ !is.na( polludantData ) ]                # Clean pollutant data\n        allVals <- append( allVals, polludantData )\n    }\n    \n    return ( mean( allVals ) )\n}\n\ncomplete <- function( directory, idVec ) {\n    completeObs <- data.frame( id = character(), nobs = numeric(), stringsAsFactors = FALSE )\n\n    for( id in idVec ) {\n        monitorData <- loadMonitorfile( directory, id )\n        sulfate     <- monitorData[,'sulfate']\n        nitrate     <- monitorData[,'nitrate']\n        both        <- !is.na( sulfate ) & !is.na( nitrate )\n        \n        nobs <- length( sulfate[ both ] )\n        completeObs[ nrow(completeObs) + 1, ] <- list( id = id, nobs = nobs )\n    }\n    \n    return ( completeObs )\n}\n\ncorr <- function( directory, threshold = 0 ) {\n    completeObs <- complete( directory, 1:332 )\n    filteredIDs <- completeObs[ completeObs['nobs'] > threshold, 'id' ]\n    \n    correlations = c()\n    for( id in filteredIDs ) {\n        monitorData <- loadMonitorfile( directory, id )\n        sulfate     <- monitorData[,'sulfate']\n        nitrate     <- monitorData[,'nitrate']\n        corVal      <- cor( sulfate, nitrate, use = \"pairwise.complete.obs\" )\n        \n        correlations <- c( correlations, corVal )\n    }\n    \n    return ( correlations )\n}",
+    "created" : 1463728169251.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3091183226",
+    "id" : "3FD2FD3D",
+    "lastKnownWriteTime" : 1463608420,
+    "last_content_update" : 1463608420,
+    "path" : "~/GitHub/datasciencecoursera/r-programming/programming_quiz2/prog_quiz2.R",
+    "project_path" : "prog_quiz2.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

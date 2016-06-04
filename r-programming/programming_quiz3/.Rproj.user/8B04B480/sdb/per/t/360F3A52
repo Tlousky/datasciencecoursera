@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "source(\"rankhospital.R\")\n\nrankall <- function(outcomeName, num = \"best\") {\n    ## Check that state and outcome are valid    \n    validOutcomes = c(\"heart attack\", \"heart failure\", \"pneumonia\" )\n    if ( !( outcomeName %in% validOutcomes) ) {\n        stop(\"invalid outcome\")\n    }\n\n    nameStart = \"Hospital.30.Day.Death..Mortality..Rates.from.\"\n    fieldName = paste( c( nameStart, capitalize( outcomeName ) ), collapse = \"\" )\n    \n    outcome[,fieldName] <- as.numeric( outcome[,fieldName] )\n\n    ## For each state, find the hospital of the given rank\n    states = levels(factor(outcome$State))\n    df <- data.frame( \n        hospital = sapply( \n            states,\n            function (x) { rankhospital(x, outcomeName, num ) },\n            USE.NAMES = FALSE \n        ),\n        state = states\n    )\n\n    ## Return a data frame with the hospital names and the\n    ## (abbreviated) state name        \n    return( df )\n}",
+    "created" : 1464797798625.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "145219369",
+    "id" : "360F3A52",
+    "lastKnownWriteTime" : 1464798436,
+    "last_content_update" : 1464798436822,
+    "path" : "~/GitHub/datasciencecoursera/r-programming/programming_quiz3/rankall.R",
+    "project_path" : "rankall.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}
