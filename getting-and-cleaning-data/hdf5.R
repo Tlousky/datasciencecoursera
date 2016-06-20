@@ -37,3 +37,24 @@ df = data.frame(
 
 h5write( df, "example.h5", "df" )
 h5ls( "example.h5" )
+
+## Read h5 data
+readA = h5read(  "example.h5", "g1/A"     )
+readB = h5read(  "example.h5", "g1/sg1/B" )
+readdf = h5read( "example.h5", "df"       )
+
+print( readA )
+
+## Write and read chunk / subsets
+h5write( 
+    c(12,13,14),  # Write this data
+    "example.h5", # In this file
+    "g1/A",       # In this subgroup
+    index = list(
+        1:3,      # In these rows (1-3)
+        1         # In this column (1)
+    ) 
+)
+
+h5read( "example.h5", "g1/A" )
+

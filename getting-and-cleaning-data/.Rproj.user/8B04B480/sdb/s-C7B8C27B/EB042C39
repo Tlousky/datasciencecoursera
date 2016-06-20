@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "gdp = tbl_df( read.csv( \"gdp.csv\" ) )\nedu = tbl_df( read.csv( \"edu.csv\" ) )\n\nmerged = merge( edu, gdp, by.x = \"CountryCode\", by.y = \"X\", all = TRUE )\n\nsp = merged$Special.Notes\n\ngrep( \"Fiscal year end: June \", sp )\n# [1]  11  18  31  60  76 105 112 166 173 188 199 216 234\nlength( grep( \"Fiscal year end: June \", sp ) )\n# [1] 13",
+    "created" : 1466454881254.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3434113538",
+    "id" : "EB042C39",
+    "lastKnownWriteTime" : 1466455324,
+    "last_content_update" : 1466455324607,
+    "path" : "~/GitHub/datasciencecoursera/getting-and-cleaning-data/edu_and_gdp.R",
+    "project_path" : "edu_and_gdp.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

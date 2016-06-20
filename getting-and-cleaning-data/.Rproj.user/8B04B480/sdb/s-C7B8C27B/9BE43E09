@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "remove_commas = function( s ) {\n    s = str_trim( as.character( s ) )\n    if ( grepl( \",\", s ) ) {\n        return( \n            gsub( \",\", \"\", s )\n        )\n    } else if ( length( grep( \"^[0-9]+$\", s ) ) == 1 ) {\n        return( s )\n    } else {\n        return( NA )\n    }\n    \n}",
+    "created" : 1466452819205.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1572383235",
+    "id" : "9BE43E09",
+    "lastKnownWriteTime" : 1466453732,
+    "last_content_update" : 1466453732025,
+    "path" : "~/GitHub/datasciencecoursera/getting-and-cleaning-data/remove_commas.R",
+    "project_path" : "remove_commas.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}
